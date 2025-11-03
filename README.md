@@ -4,7 +4,7 @@
 **ProjectView** erstellt Projekt-Snapshots für AI/LLM-Integration. Perfekt für C#-Entwickler, um Code-Projekte schnell mit ChatGPT, Claude oder Copilot zu teilen.
 
 [![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-blue.svg)](https://github.com/PowerShell/PowerShell)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 
 ## Features
 
@@ -18,53 +18,97 @@
 
 ## Installation
 
-Execution Policy setzen
+1. Execution Policy setzen (einmalig)
+```
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
-Modul-Verzeichnis erstellen
+2. Modul-Verzeichnis erstellen
+Lokalen Ordern erstellen. Kann flexibel gewählt werden.
+```
 $modulePath = "$HOME\Documents\WindowsPowerShell\Modules\ProjectView"
 New-Item -ItemType Directory -Path $modulePath -Force
+```
 
-Modul herunterladen
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yourusername/ProjectView/main/ProjectView.psm1" -OutFile "$modulePath\ProjectView.psm1"
+5. Shell-Skript herunterladen
+```
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/weltraumlama/tools-shell-projectview/ProjectView.psm1" -OutFile "$modulePath\ProjectView.psm1"
+```
+Alternativ: Skript manuell herunterladen und im definierten Ordner ablegen.
 
-Zum Profil hinzufuegen
-if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
+
+7. PowerShell-Profil erstellen (falls nicht vorhanden)
+```
+if (!(Test-Path $PROFILE)) {
+New-Item -ItemType File -Path $PROFILE -Force
+}
+```
+
+9. Modul zum Autostart hinzufuegen
+```
 Add-Content -Path $PROFILE -Value "`nImport-Module ProjectView"
+```
 
-Profil neu laden
+10. Profil neu laden
+```
 . $PROFILE
+```
 
+
+### Installation prüfen
+
+Modul-Info anzeigen
+```
+Get-Module ProjectView
+```
+
+Befehl testen
+```
+projectview help
+```
+
+**Erwartete Ausgabe:**
+```
+ModuleType Version Name ExportedCommands
+```
 
 
 ## Verwendung
 
 Einfach
 cd C:\Projekte\MeinApp
+```
 projectview create
+```
 
 Mit Optionen
+```
 projectview create -OutputFileName "mein_projekt.txt" -MaxFileSize 2MB
+```
 
 Erweitert
+```
 projectview create -ExcludeDirs @('.git', 'temp') -ExcludeFiles @('.log', '.tmp')
+```
 
 Hilfe anzeigen
+```
 projectview help
-
+```
 
 
 ## Parameter
-
+```
 | Parameter | Standard | Beschreibung |
 |-----------|----------|--------------|
 | `OutputFileName` | `project_snapshot.txt` | Name der Ausgabedatei |
 | `ExcludeDirs` | `.git`, `.vs`, `node_modules`, `bin`, `obj` | Ausgeschlossene Verzeichnisse |
 | `ExcludeFiles` | `*.exe`, `*.dll`, `*.jpg`, `*.png`, `*.pdf` | Ausgeschlossene Dateimuster |
 | `MaxFileSize` | `1MB` | Maximale Dateigroesse |
+```
 
 ## Ausgabeformat
-
+```
 ================================================================================
 PROJECT SNAPSHOT
 Generated: 2025-11-03 08:54:00
@@ -80,15 +124,16 @@ FILE CONTENTS
 File: src/Program.cs
 using System;
 // Dateiinhalt...
-
+```
 
 
 ## Use Cases
 
 ### Fuer C#-Entwickler
+```
 cd C:\Projects\MicrowaveController
 projectview create -OutputFileName "microwave_for_ai.txt"
-
+```
 
 
 Ideal fuer:
@@ -100,28 +145,34 @@ Ideal fuer:
 
 ### Fuer andere Sprachen
 Python
+```
 cd C:\Projects\my-python-app
 projectview create
-
+```
 JavaScript/React
+```
 cd C:\Projects\my-react-app
 projectview create -ExcludeDirs @('.git', 'node_modules')
-
+```
 
 ## Troubleshooting
 
 **"projectview: command not found"**
+```
 Import-Module ProjectView -Force
 . $PROFILE
+```
 
 
 **"Execution Policy" Fehler**
+```
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-
+```
 
 **Ausgabedatei zu gross**
+```
 projectview create -MaxFileSize 512KB -ExcludeFiles @('.exe', '.dll', '*.json')
-
+```
 
 ## Tipps
 
@@ -140,4 +191,6 @@ projectview create -MaxFileSize 512KB -ExcludeFiles @('.exe', '.dll', '*.json')
 **v1.0.0** (2025-11-02)
 - Initial Release
 
+## Disclaimer
+AI-generated
 
