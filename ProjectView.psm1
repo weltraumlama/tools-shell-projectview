@@ -8,10 +8,8 @@
     with intelligent binary file detection and configurable exclusions.
 
 .NOTES
-    Author: Robin
     Version: 1.0.0
     Last Updated: 2025-11-02
-    GitHub: https://github.com/yourusername/ProjectView
 #>
 
 function Invoke-ProjectView {
