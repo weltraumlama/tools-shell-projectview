@@ -72,6 +72,20 @@ projectview help
 ModuleType Version Name ExportedCommands
 ```
 
+### Eigene Änderungen
+Datei ProjectView.psm1 bearbeiten, Änderungen vornehmen und Datei speichern.
+
+Modul neu laden:
+```
+Remove-Module ProjectView -ErrorAction SilentlyContinue
+Import-Module ProjectView -Force
+```
+Testen:
+```
+Get-Command pv  # oder Ihr neuer Alias
+pv help
+```
+
 
 ## Verwendung
 
