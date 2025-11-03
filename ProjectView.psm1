@@ -476,4 +476,8 @@ FEATURES:
 
 # Export module members
 Set-Alias -Name projectview -Value Invoke-ProjectView
-Export-ModuleMember -Function Invoke-ProjectView, Show-ProjectViewHelp -Alias projectview
+Set-Alias -Name prview -Value Invoke-ProjectView
+
+
+Export-ModuleMember -Function Invoke-ProjectView, Show-ProjectViewHelp -Alias projectview, prview
+
