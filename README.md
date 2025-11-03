@@ -140,14 +140,4 @@ projectview create -MaxFileSize 512KB -ExcludeFiles @('.exe', '.dll', '*.json')
 **v1.0.0** (2025-11-02)
 - Initial Release
 
-## Lizenz
 
-MIT License - siehe [LICENSE](LICENSE)
-
-## Autor
-
-**Robin** - C# Software Developer
-
----
-
-**Made with ❤️ for developers working with AI**
